@@ -3,14 +3,12 @@ package com.fmatusiak.libraryapi.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @AllArgsConstructor
