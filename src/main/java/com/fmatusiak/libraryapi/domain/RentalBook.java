@@ -1,38 +1,41 @@
 package com.fmatusiak.libraryapi.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@NoArgsConstructor
+/*
+@Setter
+@Getter
+@Entity
 @AllArgsConstructor
-@Entity(name = "rentalBooks")
+@NoArgsConstructor
+@Table(name = "RENTAL_BOOKS")
+*/
 public class RentalBook {
+
+   /* @Id
+    @GeneratedValue
+    @NotNull
+    @Column(name = "ID_RENTAL_BOOK")
+    private int id;
+
+
+    @Column(name = "ID_COPY_BOOK")
     private int idCopyBook;
+
+    @Column(name = "ID_READER")
     private int idReader;
+
+    @Column(name = "DATE_RENTAL_BOOK")
     private LocalDate dateRentalBook;
+
+    @Column(name = "DATE_RETURN_BOOK")
     private LocalDate dateReturnBook;
-
-    @Column(name = "idCopyBook")
-    public int getIdCopyBook() {
-        return idCopyBook;
-    }
-
-    @Column(name = "idReader")
-    public int getIdReader() {
-        return idReader;
-    }
-
-    @Column(name = "dateRentalBook")
-    public LocalDate getDateRentalBook() {
-        return dateRentalBook;
-    }
-
-    @Column(name = "dateReturnBook")
-    public LocalDate getDateReturnBook() {
-        return dateReturnBook;
-    }
+*/
 }
