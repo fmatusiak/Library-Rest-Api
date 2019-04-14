@@ -17,7 +17,7 @@ import java.util.List;
 public class Reader {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Long id;
 
@@ -30,6 +30,6 @@ public class Reader {
     @Column(name = "date_create_user")
     private LocalDate dateCreateUser = LocalDate.now();
 
-    @OneToMany(mappedBy = "reader")
+    @OneToMany(mappedBy = "reader", fetch = FetchType.LAZY)
     private List<RentalBook> rentalBooks = new ArrayList<>();
 }

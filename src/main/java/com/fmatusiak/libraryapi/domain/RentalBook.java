@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class RentalBook {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Long id;
 
@@ -25,11 +25,11 @@ public class RentalBook {
     @Column(name = "date_return_book")
     private final LocalDate dateReturnBook;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_copy_book", referencedColumnName = "id")
     private CopyBook copyBook;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_reader", referencedColumnName = "id")
     private Reader reader;
 }
