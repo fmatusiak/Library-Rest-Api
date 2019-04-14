@@ -2,40 +2,34 @@ package com.fmatusiak.libraryapi.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-/*
-@Setter
 @Getter
-@Entity
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@Entity
 @Table(name = "RENTAL_BOOKS")
-*/
 public class RentalBook {
 
-   /* @Id
+    @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "ID_RENTAL_BOOK")
-    private int id;
-
-
-    @Column(name = "ID_COPY_BOOK")
-    private int idCopyBook;
-
-    @Column(name = "ID_READER")
-    private int idReader;
+    @Column(name = "ID", unique = true)
+    private Long id;
 
     @Column(name = "DATE_RENTAL_BOOK")
-    private LocalDate dateRentalBook;
+    private final LocalDate dateRentalBook;
 
     @Column(name = "DATE_RETURN_BOOK")
-    private LocalDate dateReturnBook;
-*/
+    private final LocalDate dateReturnBook;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_COPY_BOOK", referencedColumnName = "ID")
+    private CopyBook copyBook;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_READER", referencedColumnName = "ID")
+    private Reader reader;
 }

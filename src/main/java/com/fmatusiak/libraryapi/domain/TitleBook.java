@@ -2,36 +2,33 @@ package com.fmatusiak.libraryapi.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
-/*@Setter
 @Getter
-@Entity
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "TITLES")*/
+@RequiredArgsConstructor
+@Entity
+@Table(name = "TITLES_BOOKS")
 public class TitleBook {
-   /*
+
     @Id
     @GeneratedValue
-    @Column(name = "ID_TITLE_BOOK",unique = true)
+    @Column(name = "ID", unique = true)
     private int id;
 
-    @OneToMany(targetEntity = CopyBook.class,
-               mappedBy = "ID_TITLE_BOOK")
-    private ArrayList<CopyBook> copyBooks = new ArrayList<>();
-
     @Column(name = "TITLE")
-    private String title;
+    private final String title;
 
     @Column(name = "AUTHOR")
-    private String author;
+    private final String author;
 
     @Column(name = "YEAR_PUBLISHMENT")
-    private int yearPublishment;*/
+    private final int yearPublishment;
 
+    @OneToMany(mappedBy = "titleBook", fetch = FetchType.LAZY)
+    private List<CopyBook> copyBooks = new ArrayList<>();
 }

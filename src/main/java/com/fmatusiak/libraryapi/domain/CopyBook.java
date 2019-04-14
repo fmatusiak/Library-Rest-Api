@@ -2,32 +2,31 @@ package com.fmatusiak.libraryapi.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
-/*@Getter
-@Setter
+@Getter
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
-@NoArgsConstructor
-@Table(name = "COPIES_BOOK")*/
+@Table(name = "COPIES_BOOK")
 public class CopyBook {
 
-   /* @Id
+    @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "ID_COPY_BOOK")
-    private int id;
-
-    @Column(name = "ID_TITLE_BOOK")
-    private int idTitleBook;
+    @Column(name = "ID", unique = true)
+    private Long id;
 
     @Column(name = "STATUS")
-    private String status;
+    private final String status;
 
-    public CopyBook(String status) {
-        this.status = status;
-    }*/
+    @ManyToOne
+    @JoinColumn(name = "ID_TITLE_BOOK", referencedColumnName = "ID")
+    private TitleBook titleBook;
+
+    @ManyToMany(mappedBy = "copyBook", fetch = FetchType.LAZY)
+    private List<RentalBook> rentalBooks = new ArrayList<>();
 }

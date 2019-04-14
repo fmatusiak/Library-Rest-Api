@@ -2,42 +2,34 @@ package com.fmatusiak.libraryapi.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-@Setter
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "READERS")
 public class Reader {
 
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "ID",unique = true)
-    private int id;
+    @Column(name = "ID", unique = true)
+    private Long id;
 
-    @NotNull
     @Column(name = "NAME")
-    private String name;
+    private final String firstName;
 
-    @NotNull
     @Column(name = "LASTNAME")
-    private String lastname;
+    private final String lastname;
 
-    @NotNull
     @Column(name = "DATE_CREATER_USER")
-    private Date dateCreateUser;
+    private LocalDate dateCreateUser = LocalDate.now();
 
-    public Reader(String name, String lastname) {
-        this.name = name;
-        this.lastname = lastname;
-        this.dateCreateUser = new Date();
-    }
-
+    @OneToMany(mappedBy = "reader")
+    private List<RentalBook> rentalBooks = new ArrayList<>();
 }
