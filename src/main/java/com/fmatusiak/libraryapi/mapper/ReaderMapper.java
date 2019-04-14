@@ -15,18 +15,30 @@ public class ReaderMapper {
     private RentalBookMapper rentalBookMapper;
 
     public Reader ReaderDtoToReaderMapper(ReaderDto readerDto) {
-        return new Reader(readerDto.getId(), readerDto.getFirstName(), readerDto.getLastname(), readerDto.getDateCreateUser(), rentalBookMapper.RentalBookDtoListToRentalBookMapper(readerDto.getRentalBooks()));
+        return new Reader(readerDto.getId(),
+                readerDto.getFirstName(),
+                readerDto.getLastname(),
+                readerDto.getDateCreateUser(),
+                rentalBookMapper.RentalBookDtoListToRentalBookMapper(readerDto.getRentalBooks()));
     }
 
     public ReaderDto ReaderToReaderDtoMapper(Reader reader) {
-        return new ReaderDto(reader.getId(), reader.getFirstName(), reader.getLastname(), reader.getDateCreateUser(), rentalBookMapper.RentalBookListToRentalBookDtoMapper(reader.getRentalBooks()));
+        return new ReaderDto(reader.getId(),
+                reader.getFirstName(),
+                reader.getLastname(),
+                reader.getDateCreateUser(),
+                rentalBookMapper.RentalBookListToRentalBookDtoMapper(reader.getRentalBooks()));
     }
 
     public List<ReaderDto> ReaderListToReaderDtoListMapper(List<Reader> readerList) {
-        return readerList.stream().map(reader -> ReaderToReaderDtoMapper(reader)).collect(Collectors.toList());
+        return readerList.stream()
+                .map(reader -> ReaderToReaderDtoMapper(reader))
+                .collect(Collectors.toList());
     }
 
     public List<Reader> ReaderListDtoToReaderListMapper(List<ReaderDto> readerDtos) {
-        return readerDtos.stream().map(readerDto -> ReaderDtoToReaderMapper(readerDto)).collect(Collectors.toList());
+        return readerDtos.stream()
+                .map(readerDto -> ReaderDtoToReaderMapper(readerDto))
+                .collect(Collectors.toList());
     }
 }
