@@ -17,16 +17,16 @@ public class TitleBook {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "id", unique = true)
     private int id;
 
-    @Column(name = "TITLE")
+    @Column(name = "title")
     private final String title;
 
-    @Column(name = "AUTHOR")
+    @Column(name = "author")
     private final String author;
 
-    @Column(name = "YEAR_PUBLISHMENT")
+    @Column(name = "year_publishment")
     private final int yearPublishment;
 
     @OneToMany(mappedBy = "titleBook", fetch = FetchType.LAZY)

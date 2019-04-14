@@ -17,16 +17,16 @@ public class CopyBook {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "STATUS")
+    @Column(name = "status")
     private final String status;
 
     @ManyToOne
-    @JoinColumn(name = "ID_TITLE_BOOK", referencedColumnName = "ID")
+    @JoinColumn(name = "id_title_book", referencedColumnName = "id")
     private TitleBook titleBook;
 
-    @ManyToMany(mappedBy = "copyBook", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "copyBook", fetch = FetchType.LAZY)
     private List<RentalBook> rentalBooks = new ArrayList<>();
 }

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -16,5 +15,5 @@ public class ReaderDto {
     private String firstName;
     private String lastname;
     private LocalDate dateCreateUser;
-    private List<RentalBookDto> rentalBooks = new ArrayList<>();
+    private List<RentalBookDto> rentalBooks;
 }

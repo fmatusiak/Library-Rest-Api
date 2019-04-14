@@ -16,20 +16,20 @@ public class RentalBook {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "DATE_RENTAL_BOOK")
+    @Column(name = "date_rental_book")
     private final LocalDate dateRentalBook;
 
-    @Column(name = "DATE_RETURN_BOOK")
+    @Column(name = "date_return_book")
     private final LocalDate dateReturnBook;
 
     @ManyToOne
-    @JoinColumn(name = "ID_COPY_BOOK", referencedColumnName = "ID")
+    @JoinColumn(name = "id_copy_book", referencedColumnName = "id")
     private CopyBook copyBook;
 
     @ManyToOne
-    @JoinColumn(name = "ID_READER", referencedColumnName = "ID")
+    @JoinColumn(name = "id_reader", referencedColumnName = "id")
     private Reader reader;
 }

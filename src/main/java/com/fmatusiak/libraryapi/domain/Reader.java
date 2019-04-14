@@ -18,16 +18,16 @@ public class Reader {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID", unique = true)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "firstname")
     private final String firstName;
 
-    @Column(name = "LASTNAME")
+    @Column(name = "lastname")
     private final String lastname;
 
-    @Column(name = "DATE_CREATER_USER")
+    @Column(name = "date_create_user")
     private LocalDate dateCreateUser = LocalDate.now();
 
     @OneToMany(mappedBy = "reader")

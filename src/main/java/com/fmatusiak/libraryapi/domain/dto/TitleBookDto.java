@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -15,5 +14,5 @@ public class TitleBookDto {
     private String title;
     private String author;
     private int yearPublishment;
-    private List<CopyBookDto> copyBooks = new ArrayList<>();
+    private List<CopyBookDto> copyBooks;
 }
