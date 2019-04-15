@@ -13,12 +13,12 @@ public class RentalBookService {
     @Autowired
     private RentalBookRepository rentalBookRepository;
 
-    public void saveRentalBook(RentalBook reader) {
-        rentalBookRepository.save(reader);
+    public void saveRentalBook(RentalBook rentalBook) {
+        rentalBookRepository.save(rentalBook);
     }
 
-    public void deleteRentalBook(RentalBook copyBook) {
-        rentalBookRepository.delete(copyBook);
+    public void deleteRentalBook(RentalBook rentalBook) {
+        rentalBookRepository.delete(rentalBook);
     }
 
     public RentalBook findRentalBookById(Long id) {

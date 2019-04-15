@@ -17,8 +17,8 @@ public class ReaderService {
         readerRepository.save(reader);
     }
 
-    public void deleteReader(Reader copyBook) {
-        readerRepository.delete(copyBook);
+    public void deleteReader(Reader reader) {
+        readerRepository.delete(reader);
     }
 
     public Reader findReaderById(Long id) {
