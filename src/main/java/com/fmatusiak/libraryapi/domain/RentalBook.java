@@ -15,9 +15,9 @@ import java.time.LocalDate;
 public class RentalBook {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true)
-    private Long id;
+    private final Long id;
 
     @Column(name = "date_rental_book")
     private final LocalDate dateRentalBook;

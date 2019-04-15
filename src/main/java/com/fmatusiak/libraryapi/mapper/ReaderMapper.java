@@ -24,7 +24,7 @@ public class ReaderMapper {
 
     public ReaderDto ReaderToReaderDtoMapper(Reader reader) {
         return new ReaderDto(reader.getId(),
-                reader.getFirstName(),
+                reader.getFirstNamel(),
                 reader.getLastname(),
                 reader.getDateCreateUser(),
                 rentalBookMapper.RentalBookListToRentalBookDtoMapper(reader.getRentalBooks()));

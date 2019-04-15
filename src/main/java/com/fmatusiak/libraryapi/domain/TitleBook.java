@@ -16,9 +16,9 @@ import java.util.List;
 public class TitleBook {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true)
-    private int id;
+    private final int id;
 
     @Column(name = "title")
     private final String title;

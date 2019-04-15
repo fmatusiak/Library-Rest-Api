@@ -17,12 +17,12 @@ import java.util.List;
 public class Reader {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true)
     private Long id;
 
     @Column(name = "firstname")
-    private final String firstName;
+    private final String firstNamel;
 
     @Column(name = "lastname")
     private final String lastname;
