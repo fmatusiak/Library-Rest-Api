@@ -25,7 +25,7 @@ public class CopyBookService {
         return copyBookRepository.findById(id).orElse(null);
     }
 
-    public List<CopyBook> findAllCopyBook() {
+    public List<CopyBook> findAllCopyBooks() {
         return copyBookRepository.findAll();
     }
 }

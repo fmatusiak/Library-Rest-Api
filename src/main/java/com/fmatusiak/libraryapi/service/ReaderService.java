@@ -25,7 +25,7 @@ public class ReaderService {
         return readerRepository.findById(id).orElse(null);
     }
 
-    public List<Reader> findAllReader() {
+    public List<Reader> findAllReaders() {
         return readerRepository.findAll();
     }
 }
