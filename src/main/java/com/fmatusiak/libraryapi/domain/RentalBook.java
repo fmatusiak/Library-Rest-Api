@@ -17,7 +17,7 @@ public class RentalBook {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true)
-    private final Long id;
+    private Long id;
 
     @Column(name = "date_rental_book")
     private final LocalDate dateRentalBook;
@@ -27,9 +27,9 @@ public class RentalBook {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_copy_book", referencedColumnName = "id")
-    private CopyBook copyBook;
+    private final CopyBook copyBook;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_reader", referencedColumnName = "id")
-    private Reader reader;
+    private final Reader reader;
 }

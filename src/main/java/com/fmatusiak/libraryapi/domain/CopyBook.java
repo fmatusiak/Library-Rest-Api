@@ -25,7 +25,7 @@ public class CopyBook {
 
     @ManyToOne
     @JoinColumn(name = "id_title_book", referencedColumnName = "id")
-    private TitleBook titleBook;
+    private final TitleBook titleBook;
 
     @OneToMany(mappedBy = "copyBook", fetch = FetchType.LAZY)
     private List<RentalBook> rentalBooks = new ArrayList<>();

@@ -22,7 +22,7 @@ public class Reader {
     private Long id;
 
     @Column(name = "firstname")
-    private final String firstNamel;
+    private final String firstName;
 
     @Column(name = "lastname")
     private final String lastname;
