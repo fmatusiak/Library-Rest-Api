@@ -8,8 +8,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
-@AllArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "RENTAL_BOOKS")
 public class RentalBook {

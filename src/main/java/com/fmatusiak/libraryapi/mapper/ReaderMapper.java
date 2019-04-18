@@ -17,7 +17,7 @@ public class ReaderMapper {
     public Reader ReaderDtoToReaderMapper(ReaderDto readerDto) {
         return new Reader(readerDto.getId(),
                 readerDto.getFirstName(),
-                readerDto.getLastname(),
+                readerDto.getLastName(),
                 readerDto.getDateCreateUser(),
                 rentalBookMapper.RentalBookDtoListToRentalBookMapper(readerDto.getRentalBooks()));
     }
@@ -25,7 +25,7 @@ public class ReaderMapper {
     public ReaderDto ReaderToReaderDtoMapper(Reader reader) {
         return new ReaderDto(reader.getId(),
                 reader.getFirstName(),
-                reader.getLastname(),
+                reader.getLastName(),
                 reader.getDateCreateUser(),
                 rentalBookMapper.RentalBookListToRentalBookDtoMapper(reader.getRentalBooks()));
     }

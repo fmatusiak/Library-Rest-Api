@@ -13,7 +13,7 @@ import java.util.List;
 public class ReaderDto {
     private Long id;
     private String firstName;
-    private String lastname;
+    private String lastName;
     private LocalDate dateCreateUser;
     private List<RentalBookDto> rentalBooks;
 }

@@ -25,7 +25,7 @@ public class Reader {
     private final String firstName;
 
     @Column(name = "lastname")
-    private final String lastname;
+    private final String lastName;
 
     @Column(name = "date_create_user")
     private LocalDate dateCreateUser = LocalDate.now();

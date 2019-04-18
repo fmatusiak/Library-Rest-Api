@@ -5,16 +5,18 @@ import com.fmatusiak.libraryapi.repository.TitleBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class TitleBookService {
 
     @Autowired
     private TitleBookRepository titleBookRepository;
 
-    public void saveTitleBook(TitleBook titleBook) {
-        titleBookRepository.save(titleBook);
+    public TitleBook saveTitleBook(TitleBook titleBook) {
+        return titleBookRepository.save(titleBook);
     }
 
     public void deleteTitleBook(TitleBook titleBook) {

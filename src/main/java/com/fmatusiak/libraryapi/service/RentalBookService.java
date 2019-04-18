@@ -5,16 +5,18 @@ import com.fmatusiak.libraryapi.repository.RentalBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class RentalBookService {
 
     @Autowired
     private RentalBookRepository rentalBookRepository;
 
-    public void saveRentalBook(RentalBook rentalBook) {
-        rentalBookRepository.save(rentalBook);
+    public RentalBook saveRentalBook(RentalBook rentalBook) {
+        return rentalBookRepository.save(rentalBook);
     }
 
     public void deleteRentalBook(RentalBook rentalBook) {
