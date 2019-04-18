@@ -20,8 +20,8 @@ public class ReaderController {
     private ReaderMapper readerMapper;
 
     @PostMapping(value = "saveReader", consumes = APPLICATION_JSON_VALUE)
-    public void saveReader(@RequestBody Reader reader) {
-        readerService.saveReader(reader);
+    public ReaderDto saveReader(@RequestBody Reader reader) {
+        return readerMapper.ReaderToReaderDtoMapper(readerService.saveReader(reader));
     }
 
     @DeleteMapping(value = "deleteReader")

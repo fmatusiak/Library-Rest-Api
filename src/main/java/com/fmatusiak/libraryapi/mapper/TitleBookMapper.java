@@ -14,7 +14,7 @@ public class TitleBookMapper {
     @Autowired
     private CopyBookMapper copyBookMapper;
 
-    public TitleBook titleBookDtoToTitleBookDtoMapper(TitleBookDto titleBookDto) {
+    public TitleBook titleBookDtoToTitleBookDtoMapper(final TitleBookDto titleBookDto) {
         return new TitleBook(titleBookDto.getId(),
                 titleBookDto.getTitle(),
                 titleBookDto.getAuthor(),
@@ -22,7 +22,7 @@ public class TitleBookMapper {
                 copyBookMapper.CopyBookDtoListToCopyBookListMapper(titleBookDto.getCopyBooks()));
     }
 
-    public TitleBookDto titleBookToTitleBookDtoMapper(TitleBook titleBook) {
+    public TitleBookDto titleBookToTitleBookDtoMapper(final TitleBook titleBook) {
         return new TitleBookDto(titleBook.getId(),
                 titleBook.getTitle(),
                 titleBook.getAuthor(),
@@ -30,13 +30,13 @@ public class TitleBookMapper {
                 copyBookMapper.CopyBookListToCopyBookDtoListMapper(titleBook.getCopyBooks()));
     }
 
-    public List<TitleBookDto> titleBookListToTitleBookDtoListMapper(List<TitleBook> titleBookList) {
+    public List<TitleBookDto> titleBookListToTitleBookDtoListMapper(final List<TitleBook> titleBookList) {
         return titleBookList.stream()
                 .map(titleBook -> titleBookToTitleBookDtoMapper(titleBook))
                 .collect(Collectors.toList());
     }
 
-    public List<TitleBook> titleBookDtoListToTitleBookListMapper(List<TitleBookDto> titleBookDtos) {
+    public List<TitleBook> titleBookDtoListToTitleBookListMapper(final List<TitleBookDto> titleBookDtos) {
         return titleBookDtos.stream()
                 .map(titleBookDto -> titleBookDtoToTitleBookDtoMapper(titleBookDto))
                 .collect(Collectors.toList());

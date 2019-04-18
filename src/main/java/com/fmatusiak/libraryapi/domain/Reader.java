@@ -1,8 +1,9 @@
 package com.fmatusiak.libraryapi.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name = "READERS")
 public class Reader {
@@ -22,14 +23,19 @@ public class Reader {
     private Long id;
 
     @Column(name = "firstname")
-    private final String firstName;
+    private String firstname;
 
     @Column(name = "lastname")
-    private final String lastName;
+    private String lastname;
 
     @Column(name = "date_create_user")
     private LocalDate dateCreateUser = LocalDate.now();
 
     @OneToMany(mappedBy = "reader", fetch = FetchType.LAZY)
     private List<RentalBook> rentalBooks = new ArrayList<>();
+
+    public Reader(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 }

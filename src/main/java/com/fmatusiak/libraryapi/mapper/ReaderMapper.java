@@ -14,29 +14,29 @@ public class ReaderMapper {
     @Autowired
     private RentalBookMapper rentalBookMapper;
 
-    public Reader ReaderDtoToReaderMapper(ReaderDto readerDto) {
+    public Reader ReaderDtoToReaderMapper(final ReaderDto readerDto) {
         return new Reader(readerDto.getId(),
-                readerDto.getFirstName(),
-                readerDto.getLastName(),
+                readerDto.getFirstname(),
+                readerDto.getLastname(),
                 readerDto.getDateCreateUser(),
                 rentalBookMapper.RentalBookDtoListToRentalBookMapper(readerDto.getRentalBooks()));
     }
 
-    public ReaderDto ReaderToReaderDtoMapper(Reader reader) {
+    public ReaderDto ReaderToReaderDtoMapper(final Reader reader) {
         return new ReaderDto(reader.getId(),
-                reader.getFirstName(),
-                reader.getLastName(),
+                reader.getFirstname(),
+                reader.getLastname(),
                 reader.getDateCreateUser(),
                 rentalBookMapper.RentalBookListToRentalBookDtoMapper(reader.getRentalBooks()));
     }
 
-    public List<ReaderDto> ReaderListToReaderDtoListMapper(List<Reader> readerList) {
+    public List<ReaderDto> ReaderListToReaderDtoListMapper(final List<Reader> readerList) {
         return readerList.stream()
                 .map(reader -> ReaderToReaderDtoMapper(reader))
                 .collect(Collectors.toList());
     }
 
-    public List<Reader> ReaderListDtoToReaderListMapper(List<ReaderDto> readerDtos) {
+    public List<Reader> ReaderListDtoToReaderListMapper(final List<ReaderDto> readerDtos) {
         return readerDtos.stream()
                 .map(readerDto -> ReaderDtoToReaderMapper(readerDto))
                 .collect(Collectors.toList());

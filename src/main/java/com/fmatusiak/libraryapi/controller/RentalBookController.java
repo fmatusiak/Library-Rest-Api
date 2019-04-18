@@ -20,8 +20,8 @@ public class RentalBookController {
     private RentalBookMapper rentalBookMapper;
 
     @PostMapping(value = "saveRentalBook", consumes = APPLICATION_JSON_VALUE)
-    public void saveRentalBook(@RequestBody RentalBook rentalBook) {
-        rentalBookService.saveRentalBook(rentalBook);
+    public RentalBookDto saveRentalBook(@RequestBody RentalBook rentalBook) {
+        return rentalBookMapper.RentalBookToRentalBookDtoMapper(rentalBookService.saveRentalBook(rentalBook));
     }
 
     @DeleteMapping(value = "deleteRentalBook")

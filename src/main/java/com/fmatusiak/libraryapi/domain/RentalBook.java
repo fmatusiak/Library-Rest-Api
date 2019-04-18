@@ -1,14 +1,15 @@
 package com.fmatusiak.libraryapi.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Entity
 @Table(name = "RENTAL_BOOKS")
@@ -20,16 +21,23 @@ public class RentalBook {
     private Long id;
 
     @Column(name = "date_rental_book")
-    private final LocalDate dateRentalBook;
+    private LocalDate dateRentalBook;
 
     @Column(name = "date_return_book")
-    private final LocalDate dateReturnBook;
+    private LocalDate dateReturnBook;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_copy_book", referencedColumnName = "id")
-    private final CopyBook copyBook;
+    private CopyBook copyBook;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_reader", referencedColumnName = "id")
-    private final Reader reader;
+    private Reader reader;
+
+    public RentalBook(LocalDate dateRentalBook, LocalDate dateReturnBook, CopyBook copyBook, Reader reader) {
+        this.dateRentalBook = dateRentalBook;
+        this.dateReturnBook = dateReturnBook;
+        this.copyBook = copyBook;
+        this.reader = reader;
+    }
 }

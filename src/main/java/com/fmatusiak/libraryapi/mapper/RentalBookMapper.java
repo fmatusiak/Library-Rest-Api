@@ -17,7 +17,7 @@ public class RentalBookMapper {
     @Autowired
     private CopyBookMapper copyBookMapper;
 
-    public RentalBook RentalBookDtoToRentalBookMapper(RentalBookDto rentalBookDto) {
+    public RentalBook RentalBookDtoToRentalBookMapper(final RentalBookDto rentalBookDto) {
         return new RentalBook(rentalBookDto.getId(),
                 rentalBookDto.getDateRentalBook(),
                 rentalBookDto.getDateReturnBook(),
@@ -25,7 +25,7 @@ public class RentalBookMapper {
                 readerMapper.ReaderDtoToReaderMapper(rentalBookDto.getReader()));
     }
 
-    public RentalBookDto RentalBookToRentalBookDtoMapper(RentalBook rentalBook) {
+    public RentalBookDto RentalBookToRentalBookDtoMapper(final RentalBook rentalBook) {
         return new RentalBookDto(rentalBook.getId(),
                 rentalBook.getDateRentalBook(),
                 rentalBook.getDateReturnBook(),
@@ -33,13 +33,13 @@ public class RentalBookMapper {
                 readerMapper.ReaderToReaderDtoMapper(rentalBook.getReader()));
     }
 
-    public List<RentalBookDto> RentalBookListToRentalBookDtoMapper(List<RentalBook> rentalBooks) {
+    public List<RentalBookDto> RentalBookListToRentalBookDtoMapper(final List<RentalBook> rentalBooks) {
         return rentalBooks.stream()
                 .map(rentalBook -> RentalBookToRentalBookDtoMapper(rentalBook))
                 .collect(Collectors.toList());
     }
 
-    public List<RentalBook> RentalBookDtoListToRentalBookMapper(List<RentalBookDto> rentalBooksDto) {
+    public List<RentalBook> RentalBookDtoListToRentalBookMapper(final List<RentalBookDto> rentalBooksDto) {
         return rentalBooksDto.stream()
                 .map(rentalBookDto -> RentalBookDtoToRentalBookMapper(rentalBookDto))
                 .collect(Collectors.toList());

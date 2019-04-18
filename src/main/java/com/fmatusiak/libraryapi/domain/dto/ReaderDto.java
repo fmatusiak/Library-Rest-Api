@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class ReaderDto {
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private LocalDate dateCreateUser;
     private List<RentalBookDto> rentalBooks;
 }

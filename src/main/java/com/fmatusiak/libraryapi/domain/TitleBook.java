@@ -1,8 +1,9 @@
 package com.fmatusiak.libraryapi.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "TITLES_BOOKS")
 public class TitleBook {
@@ -21,14 +22,20 @@ public class TitleBook {
     private int id;
 
     @Column(name = "title")
-    private final String title;
+    private String title;
 
     @Column(name = "author")
-    private final String author;
+    private String author;
 
     @Column(name = "year_publishment")
-    private final int yearPublishment;
+    private int yearPublishment;
 
     @OneToMany(mappedBy = "titleBook", fetch = FetchType.LAZY)
     private List<CopyBook> copyBooks = new ArrayList<>();
+
+    public TitleBook(String title, String author, int yearPublishment) {
+        this.title = title;
+        this.author = author;
+        this.yearPublishment = yearPublishment;
+    }
 }

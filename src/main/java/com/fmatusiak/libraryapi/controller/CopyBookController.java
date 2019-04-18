@@ -4,6 +4,7 @@ import com.fmatusiak.libraryapi.domain.CopyBook;
 import com.fmatusiak.libraryapi.domain.dto.CopyBookDto;
 import com.fmatusiak.libraryapi.mapper.CopyBookMapper;
 import com.fmatusiak.libraryapi.service.CopyBookService;
+import com.fmatusiak.libraryapi.service.TitleBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,12 @@ public class CopyBookController {
     @Autowired
     private CopyBookMapper copyBookMapper;
 
+    @Autowired
+    private TitleBookService titleBookService;
+
     @PostMapping(value = "saveCopyBook", consumes = APPLICATION_JSON_VALUE)
-    public void saveCopyBook(@RequestBody CopyBook copyBook) {
-        copyBookService.saveCopyBook(copyBook);
+    public CopyBookDto saveCopyBook(@RequestBody CopyBook copyBook) {
+        return copyBookMapper.CopyBookToCopyBookDtoMapper(copyBookService.saveCopyBook(copyBook));
     }
 
     @DeleteMapping(value = "deleteCopyBook")

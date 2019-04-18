@@ -20,8 +20,8 @@ public class TitleBookController {
     private TitleBookMapper titleBookMapper;
 
     @PostMapping(value = "saveTitleBook", consumes = APPLICATION_JSON_VALUE)
-    public void saveTitleBook(@RequestBody TitleBook titleBook) {
-        titleBookService.saveTitleBook(titleBook);
+    public TitleBookDto saveTitleBook(@RequestBody TitleBook titleBook) {
+        return titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.saveTitleBook(titleBook));
     }
 
     @DeleteMapping(value = "deleteTitleBook")
