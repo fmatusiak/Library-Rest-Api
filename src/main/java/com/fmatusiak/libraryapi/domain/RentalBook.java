@@ -21,7 +21,7 @@ public class RentalBook {
     private Long id;
 
     @Column(name = "date_rental_book")
-    private LocalDate dateRentalBook;
+    private LocalDate dateRentalBook = LocalDate.now();
 
     @Column(name = "date_return_book")
     private LocalDate dateReturnBook;
@@ -34,8 +34,7 @@ public class RentalBook {
     @JoinColumn(name = "id_reader", referencedColumnName = "id")
     private Reader reader;
 
-    public RentalBook(LocalDate dateRentalBook, LocalDate dateReturnBook, CopyBook copyBook, Reader reader) {
-        this.dateRentalBook = dateRentalBook;
+    public RentalBook(LocalDate dateReturnBook, CopyBook copyBook, Reader reader) {
         this.dateReturnBook = dateReturnBook;
         this.copyBook = copyBook;
         this.reader = reader;

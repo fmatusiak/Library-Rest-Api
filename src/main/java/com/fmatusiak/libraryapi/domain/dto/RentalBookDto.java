@@ -2,17 +2,17 @@ package com.fmatusiak.libraryapi.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class RentalBookDto {
     private Long id;
-    private LocalDate dateRentalBook;
+    private LocalDate dateRentalBook = LocalDate.now();
     private LocalDate dateReturnBook;
-    private CopyBookDto copyBookDto;
-    private ReaderDto reader;
+    private Long copyBookId;
+    private Long readerId;
 }

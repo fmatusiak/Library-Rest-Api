@@ -1,6 +1,5 @@
 package com.fmatusiak.libraryapi.controller;
 
-import com.fmatusiak.libraryapi.domain.RentalBook;
 import com.fmatusiak.libraryapi.domain.dto.RentalBookDto;
 import com.fmatusiak.libraryapi.mapper.RentalBookMapper;
 import com.fmatusiak.libraryapi.service.RentalBookService;
@@ -20,8 +19,8 @@ public class RentalBookController {
     private RentalBookMapper rentalBookMapper;
 
     @PostMapping(value = "saveRentalBook", consumes = APPLICATION_JSON_VALUE)
-    public RentalBookDto saveRentalBook(@RequestBody RentalBook rentalBook) {
-        return rentalBookMapper.RentalBookToRentalBookDtoMapper(rentalBookService.saveRentalBook(rentalBook));
+    public void saveRentalBook(@RequestBody RentalBookDto rentalBookDto) {
+        rentalBookService.saveRentalBook(rentalBookMapper.RentalBookDtoToRentalBookMapper(rentalBookDto));
     }
 
     @DeleteMapping(value = "deleteRentalBook")
