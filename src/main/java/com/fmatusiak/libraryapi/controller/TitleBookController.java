@@ -19,8 +19,8 @@ public class TitleBookController {
     @Autowired
     private TitleBookMapper titleBookMapper;
 
-    @PostMapping(value = "saveTitleBook", consumes = APPLICATION_JSON_VALUE)
-    public void saveTitleBook(@RequestBody TitleBook titleBook) {
+    @PostMapping(value = "createTitleBook", consumes = APPLICATION_JSON_VALUE)
+    public void createTitleBook(@RequestBody TitleBook titleBook) {
         titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.saveTitleBook(titleBook));
     }
 
@@ -29,7 +29,7 @@ public class TitleBookController {
         titleBookService.deleteTitleBook(titleBookService.findTitleBookById(titleBookId));
     }
 
-    @GetMapping(value = "findtitleBookById")
+    @GetMapping(value = "findTitleBookById")
     public TitleBookDto findTitleBookById(@RequestParam Long titleBookId) {
         return titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.findTitleBookById(titleBookId));
     }

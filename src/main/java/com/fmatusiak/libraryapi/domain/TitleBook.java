@@ -24,10 +24,10 @@ public class TitleBook {
     @Column(name = "title", unique = true)
     private String title;
 
-    @Column(name = "author")
+    @Column(name = "author", unique = true)
     private String author;
 
-    @Column(name = "year_publishment")
+    @Column(name = "year_publishment", unique = true)
     private int yearPublishment;
 
     @OneToMany(mappedBy = "titleBook", fetch = FetchType.LAZY)
@@ -38,4 +38,6 @@ public class TitleBook {
         this.author = author;
         this.yearPublishment = yearPublishment;
     }
+
+
 }

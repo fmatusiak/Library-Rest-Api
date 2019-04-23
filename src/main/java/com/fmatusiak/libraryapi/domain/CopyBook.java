@@ -1,15 +1,13 @@
 package com.fmatusiak.libraryapi.domain;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter()
+
+@Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Entity
@@ -21,6 +19,7 @@ public class CopyBook {
     @Column(name = "id", unique = true)
     private Long id;
 
+    @Setter
     @Column(name = "status")
     private String status;
 

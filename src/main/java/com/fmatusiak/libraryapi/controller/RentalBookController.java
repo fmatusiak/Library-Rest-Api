@@ -18,18 +18,25 @@ public class RentalBookController {
     @Autowired
     private RentalBookMapper rentalBookMapper;
 
-    @PostMapping(value = "saveRentalBook", consumes = APPLICATION_JSON_VALUE)
-    public void saveRentalBook(@RequestBody RentalBookDto rentalBookDto) {
+    @Autowired
+    private CopyBookController copyBookController;
+
+    @PostMapping(value = "rentBook", consumes = APPLICATION_JSON_VALUE)
+    public void rentBook(@RequestBody RentalBookDto rentalBookDto) {
+        copyBookController.setCopyBookStatusAsRented(rentalBookDto.getCopyBookId());
         rentalBookService.saveRentalBook(rentalBookMapper.RentalBookDtoToRentalBookMapper(rentalBookDto));
     }
 
-    @DeleteMapping(value = "deleteRentalBook")
-    public void deleteRentalBook(@RequestParam Long rentalBookId) {
-        rentalBookService.deleteRentalBook(rentalBookService.findRentalBookById(rentalBookId));
+    @DeleteMapping(value = "returnBook")
+    public void returnBook(@RequestParam Long rentalBookId) {
+        copyBookController.setCopyBookStatusAsAvailable(
+                rentalBookService.findRentalBookById(rentalBookId).getCopyBook().getId());
+        rentalBookService.deleteRentalBook(
+                rentalBookService.findRentalBookById(rentalBookId));
     }
 
-    @GetMapping(value = "findRentalBookById")
-    public RentalBookDto findRentalBookById(@RequestParam Long rentalBookId) {
+    @GetMapping(value = "findBookById")
+    public RentalBookDto findBookById(@RequestParam Long rentalBookId) {
         return rentalBookMapper.RentalBookToRentalBookDtoMapper(rentalBookService.findRentalBookById(rentalBookId));
     }
 

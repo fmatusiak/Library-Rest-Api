@@ -30,4 +30,5 @@ public class RentalBookService {
     public List<RentalBook> findAllRentalBooks() {
         return rentalBookRepository.findAll();
     }
+
 }

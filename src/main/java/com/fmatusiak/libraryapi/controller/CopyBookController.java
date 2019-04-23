@@ -18,8 +18,8 @@ public class CopyBookController {
     @Autowired
     private CopyBookMapper copyBookMapper;
 
-    @PostMapping(value = "saveCopyBook", consumes = APPLICATION_JSON_VALUE)
-    public void saveCopyBook(@RequestBody CopyBookDto copyBookDto) {
+    @PostMapping(value = "createCopyBook", consumes = APPLICATION_JSON_VALUE)
+    public void createCopyBook(@RequestBody CopyBookDto copyBookDto) {
         copyBookService.saveCopyBook(copyBookMapper.CopyBookDtoToCopyBookMapper(copyBookDto));
     }
 
@@ -32,9 +32,19 @@ public class CopyBookController {
     public CopyBookDto findCopyBookById(@RequestParam Long copyBookId) {
         return copyBookMapper.CopyBookToCopyBookDtoMapper(copyBookService.findCopyBookById(copyBookId));
     }
-   /* @PutMapping(value = "changeOfStatusCopyBook")
-    public void changeOfStatusCopyBook(@RequestParam Long copyBookId, @RequestParam String status) {
 
+    @PostMapping(value = "setCopyBookStatusAsAvailable")
+    public void setCopyBookStatusAsAvailable(@RequestParam Long copyBookId) {
+        copyBookService.setCopyBookStatusAsAvailable(copyBookId);
+    }
 
-    }*/
+    @PostMapping(value = "setCopyBookStatusAsRented")
+    public void setCopyBookStatusAsRented(@RequestParam Long copyBookId) {
+        copyBookService.setCopyBookStatusAsRented(copyBookId);
+    }
+
+    @GetMapping(value = "getCountCopyBooksByTitle")
+    public long getCountCopyBooksByTitle(@RequestParam String title) {
+        return copyBookService.countCopyBookByTitle(title);
+    }
 }

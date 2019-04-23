@@ -19,8 +19,8 @@ public class ReaderController {
     @Autowired
     private ReaderMapper readerMapper;
 
-    @PostMapping(value = "saveReader", consumes = APPLICATION_JSON_VALUE)
-    public void saveReader(@RequestBody Reader reader) {
+    @PostMapping(value = "createReader", consumes = APPLICATION_JSON_VALUE)
+    public void createReader(@RequestBody Reader reader) {
         readerMapper.ReaderToReaderDtoMapper(readerService.saveReader(reader));
     }
 
