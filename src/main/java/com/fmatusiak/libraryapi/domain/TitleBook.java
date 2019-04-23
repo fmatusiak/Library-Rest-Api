@@ -13,21 +13,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "TITLES_BOOKS")
+@Table(name = "TITLES_BOOKS", uniqueConstraints = {@UniqueConstraint(columnNames = "title")})
 public class TitleBook {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", unique = true)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "title", unique = true)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "author", unique = true)
+    @Column(name = "author")
     private String author;
 
-    @Column(name = "year_publishment", unique = true)
+    @Column(name = "year_publishment")
     private int yearPublishment;
 
     @OneToMany(mappedBy = "titleBook", fetch = FetchType.LAZY)

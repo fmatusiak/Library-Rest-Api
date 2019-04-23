@@ -46,7 +46,6 @@ public class RentalBookTestSuite {
         readerService.saveReader(reader);
 
         RentalBook rentalBook = new RentalBook(
-                LocalDate.now(),
                 LocalDate.now().plusDays(5),
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
@@ -73,7 +72,6 @@ public class RentalBookTestSuite {
         readerService.saveReader(reader);
 
         RentalBook rentalBook = new RentalBook(
-                LocalDate.now(),
                 LocalDate.now().plusDays(5),
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
@@ -101,7 +99,6 @@ public class RentalBookTestSuite {
         readerService.saveReader(reader);
 
         RentalBook rentalBook = new RentalBook(
-                LocalDate.now(),
                 LocalDate.now().plusDays(5),
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
@@ -137,13 +134,11 @@ public class RentalBookTestSuite {
         readerService.saveReader(reader2);
 
         RentalBook rentalBook = new RentalBook(
-                LocalDate.now(),
                 LocalDate.now().plusDays(5),
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
 
         RentalBook rentalBook2 = new RentalBook(
-                LocalDate.now(),
                 LocalDate.now().plusDays(5),
                 copyBookService.findCopyBookById(copyBook2.getId()),
                 readerService.findReaderById(reader2.getId()));

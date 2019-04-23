@@ -1,5 +1,6 @@
 package com.fmatusiak.libraryapi.controller;
 
+import com.fmatusiak.libraryapi.domain.CopyBook;
 import com.fmatusiak.libraryapi.domain.dto.CopyBookDto;
 import com.fmatusiak.libraryapi.mapper.CopyBookMapper;
 import com.fmatusiak.libraryapi.service.CopyBookService;
@@ -19,8 +20,8 @@ public class CopyBookController {
     private CopyBookMapper copyBookMapper;
 
     @PostMapping(value = "createCopyBook", consumes = APPLICATION_JSON_VALUE)
-    public void createCopyBook(@RequestBody CopyBookDto copyBookDto) {
-        copyBookService.saveCopyBook(copyBookMapper.CopyBookDtoToCopyBookMapper(copyBookDto));
+    public void createCopyBook(@RequestBody CopyBook copyBook) {
+        copyBookService.saveCopyBook(copyBook);
     }
 
     @DeleteMapping(value = "deleteCopyBook")
