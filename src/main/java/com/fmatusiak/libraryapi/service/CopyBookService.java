@@ -33,27 +33,15 @@ public class CopyBookService {
     }
 
     public void setCopyBookStatusAsAvailable(Long copyBookId) {
-        if (checkCopyBookAvailable(copyBookId)) {
             CopyBook copyBook = findCopyBookById(copyBookId);
             copyBook.setStatus(RentalStatus.AVAILABLE.getStatus());
             copyBookRepository.save(copyBook);
-        }
+
     }
 
     public void setCopyBookStatusAsRented(Long copyBookId) {
-        if (checkCopyBookAvailable(copyBookId)) {
             CopyBook copyBook = findCopyBookById(copyBookId);
             copyBook.setStatus(RentalStatus.RENTED.getStatus());
             copyBookRepository.save(copyBook);
-        }
     }
-
-    public Long countCopyBookByTitle(String title) {
-        return copyBookRepository.countCopyBookByTitleBook_Title(title);
-    }
-
-    private boolean checkCopyBookAvailable(Long id) {
-        return findCopyBookById(id) != null;
-    }
-
 }
