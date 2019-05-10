@@ -14,5 +14,5 @@ public class TitleBookDto {
     private String title;
     private String author;
     private int yearPublishment;
-    private List<CopyBookDto> copyBooks;
+    private List<Long> copyBooksId;
 }

@@ -18,4 +18,9 @@ public interface TitleBookRepository extends CrudRepository<TitleBook, Long> {
 
     @Override
     void delete(TitleBook copyBook);
+
+    TitleBook findByTitle(String title);
+
+    List<TitleBook> findAllByAuthor(String author);
+
 }

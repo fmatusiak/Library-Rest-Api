@@ -16,9 +16,6 @@ import java.util.stream.Collectors;
 public class CopyBookMapper {
 
     @Autowired
-    private RentalBookMapper rentalBookMapper;
-
-    @Autowired
     private RentalBookService rentalBookService;
 
     @Autowired

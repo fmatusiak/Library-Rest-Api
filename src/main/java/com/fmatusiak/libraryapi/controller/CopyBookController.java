@@ -46,6 +46,6 @@ public class CopyBookController {
 
     @GetMapping(value = "getCountCopyBooksByTitle")
     public long getCountCopyBooksByTitle(@RequestParam String title) {
-        return copyBookService.countCopyBookByTitle(title);
+        return copyBookService.getCountCopyBooksByTitle(title);
     }
 }

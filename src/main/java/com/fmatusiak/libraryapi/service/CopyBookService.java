@@ -32,6 +32,10 @@ public class CopyBookService {
         return copyBookRepository.findAll();
     }
 
+    public Long getCountCopyBooksByTitle(String title) {
+        return copyBookRepository.countCopyBooksByTitleBookTitle(title);
+    }
+
     public void setCopyBookStatusAsAvailable(Long copyBookId) {
             CopyBook copyBook = findCopyBookById(copyBookId);
             copyBook.setStatus(RentalStatus.AVAILABLE.getStatus());

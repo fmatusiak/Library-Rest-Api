@@ -20,6 +20,6 @@ public interface CopyBookRepository extends CrudRepository<CopyBook, Long> {
     @Override
     void delete(CopyBook copyBook);
 
-    long countCopyBookByTitleBook_Title(String title);
+    Long countCopyBooksByTitleBookTitle(String title);
 }
 
