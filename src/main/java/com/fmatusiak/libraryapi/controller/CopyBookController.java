@@ -21,7 +21,7 @@ public class CopyBookController {
 
     @PostMapping(value = "createCopyBook", consumes = APPLICATION_JSON_VALUE)
     public void createCopyBook(@RequestBody CopyBook copyBook) {
-        copyBookService.saveCopyBook(copyBook);
+        copyBookService.copyBook(copyBook);
     }
 
     @DeleteMapping(value = "deleteCopyBook")
@@ -44,8 +44,8 @@ public class CopyBookController {
         copyBookService.setCopyBookStatusAsRented(copyBookId);
     }
 
-    @GetMapping(value = "getCountCopyBooksByTitle")
-    public long getCountCopyBooksByTitle(@RequestParam String title) {
-        return copyBookService.getCountCopyBooksByTitle(title);
+    @GetMapping(value = "getCountCopyBooksAvailableByTitle")
+    public long getCountCopyBooksAvailableByTitle(@RequestParam String title) {
+        return copyBookService.getCountCopyBooksAvailableByTitle(title);
     }
 }

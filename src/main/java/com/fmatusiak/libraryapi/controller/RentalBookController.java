@@ -24,14 +24,14 @@ public class RentalBookController {
     @PostMapping(value = "rentBook", consumes = APPLICATION_JSON_VALUE)
     public void rentBook(@RequestBody RentalBookDto rentalBookDto) {
         copyBookController.setCopyBookStatusAsRented(rentalBookDto.getCopyBookId());
-        rentalBookService.saveRentalBook(rentalBookMapper.RentalBookDtoToRentalBookMapper(rentalBookDto));
+        rentalBookService.rentalBook(rentalBookMapper.RentalBookDtoToRentalBookMapper(rentalBookDto));
     }
 
     @DeleteMapping(value = "returnBook")
     public void returnBook(@RequestParam Long rentalBookId) {
         copyBookController.setCopyBookStatusAsAvailable(
                 rentalBookService.findRentalBookById(rentalBookId).getCopyBook().getId());
-        rentalBookService.deleteRentalBook(
+        rentalBookService.returnRentalBook(
                 rentalBookService.findRentalBookById(rentalBookId));
     }
 

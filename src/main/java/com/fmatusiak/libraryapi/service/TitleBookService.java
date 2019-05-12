@@ -27,7 +27,11 @@ public class TitleBookService {
         return titleBookRepository.findById(id).orElse(null);
     }
 
-    public List<TitleBook> findAllTitleBooks() {
-        return titleBookRepository.findAll();
+    public List<TitleBook> findTitleBooksByAuthor(String author) {
+        return titleBookRepository.findTitleBooksByAuthor(author);
+    }
+
+    public TitleBook findTitleBookByTitle(String title) {
+        return titleBookRepository.findTitleBookByTitle(title);
     }
 }

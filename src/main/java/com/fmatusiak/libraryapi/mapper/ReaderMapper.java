@@ -1,7 +1,9 @@
 package com.fmatusiak.libraryapi.mapper;
 
 import com.fmatusiak.libraryapi.domain.Reader;
+import com.fmatusiak.libraryapi.domain.RentalBook;
 import com.fmatusiak.libraryapi.domain.dto.ReaderDto;
+import com.fmatusiak.libraryapi.service.RentalBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,14 +14,14 @@ import java.util.stream.Collectors;
 public class ReaderMapper {
 
     @Autowired
-    private RentalBookMapper rentalBookMapper;
+    private RentalBookService rentalBookService;
 
     public Reader ReaderDtoToReaderMapper(final ReaderDto readerDto) {
         return new Reader(readerDto.getId(),
                 readerDto.getFirstname(),
                 readerDto.getLastname(),
                 readerDto.getDateCreateUser(),
-                rentalBookMapper.RentalBookDtoListToRentalBookMapper(readerDto.getRentalBooks()));
+                getListRentalBooksById(readerDto.getRentalBooksId()));
     }
 
     public ReaderDto ReaderToReaderDtoMapper(final Reader reader) {
@@ -27,7 +29,7 @@ public class ReaderMapper {
                 reader.getFirstname(),
                 reader.getLastname(),
                 reader.getDateCreateUser(),
-                rentalBookMapper.RentalBookListToRentalBookDtoMapper(reader.getRentalBooks()));
+                getListRentalBooksWithId(reader.getRentalBooks()));
     }
 
     public List<ReaderDto> ReaderListToReaderDtoListMapper(final List<Reader> readerList) {
@@ -41,4 +43,18 @@ public class ReaderMapper {
                 .map(readerDto -> ReaderDtoToReaderMapper(readerDto))
                 .collect(Collectors.toList());
     }
+
+    private List<Long> getListRentalBooksWithId(final List<RentalBook> rentalBooks) {
+        return rentalBooks.stream()
+                .map(rentalBookDto -> rentalBookDto.getId())
+                .collect(Collectors.toList());
+    }
+
+    private List<RentalBook> getListRentalBooksById(final List<Long> rentalBooksId) {
+        return rentalBooksId.stream()
+                .map(aLong -> rentalBookService.findRentalBookById(aLong))
+                .collect(Collectors.toList());
+    }
+
+
 }

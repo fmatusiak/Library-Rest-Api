@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class RentalBookDto {
     private Long id;
-    private LocalDate dateRentalBook = LocalDate.now();
+    private LocalDate dateRentalBook;
     private LocalDate dateReturnBook;
     private Long copyBookId;
     private Long readerId;

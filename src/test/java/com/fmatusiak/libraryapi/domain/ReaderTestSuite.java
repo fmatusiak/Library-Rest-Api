@@ -20,16 +20,16 @@ public class ReaderTestSuite {
     private ReaderService readerService;
 
     @Test
-    public void testSaveReader() {
+    public void testSaveAndFindReader() {
         //Given
         Reader reader = new Reader("edward", "acki");
         readerService.saveReader(reader);
 
         //When
-        int countReader = readerService.findAllReaders().size();
+        Reader readReader = readerService.findReaderById(reader.getId());
 
         //Then
-        assertEquals(1, countReader);
+        assertEquals(reader.getId(), readReader.getId());
     }
 
     @Test
@@ -39,44 +39,12 @@ public class ReaderTestSuite {
         readerService.saveReader(reader);
 
         //When
-        readerService.deleteReader(reader);
-        int countReader = readerService.findAllReaders().size();
+        Reader readReaderBeforeDelete = readerService.findReaderById(reader.getId());
+        readerService.deleteReader(readReaderBeforeDelete);
+        Reader readReaderAfterDelete = readerService.findReaderById(reader.getId());
 
         //Then
-        assertEquals(0, countReader);
+        assertEquals(null, readReaderAfterDelete);
     }
-
-    @Test
-    public void testFindAllReader() {
-        //Given
-        Reader reader = new Reader("edward", "acki");
-        Reader reader2 = new Reader("dawid", "dawidowski");
-        Reader reader3 = new Reader("filip", "filipowski");
-
-        readerService.saveReader(reader);
-        readerService.saveReader(reader2);
-        readerService.saveReader(reader3);
-
-        //When
-        int countReader = readerService.findAllReaders().size();
-
-        //Then
-        assertEquals(3, countReader);
-    }
-
-    @Test
-    public void testFindByIdReader() {
-        //Given
-        Reader reader = new Reader("edward", "acki");
-
-        readerService.saveReader(reader);
-
-        //When
-        Reader readerRead = readerService.findReaderById(reader.getId());
-
-        //Then
-        assertEquals(reader, readerRead);
-    }
-
 
 }

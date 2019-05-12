@@ -15,5 +15,5 @@ public class ReaderDto {
     private String firstname;
     private String lastname;
     private LocalDate dateCreateUser;
-    private List<RentalBookDto> rentalBooks;
+    private List<Long> rentalBooksId;
 }

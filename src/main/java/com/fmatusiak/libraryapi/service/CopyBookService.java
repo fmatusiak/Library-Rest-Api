@@ -7,16 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.logging.Logger;
 
 @Transactional
 @Service
 public class CopyBookService {
 
+    private static final Logger LOGGER = Logger.getLogger(CopyBookService.class.getName());
+
     @Autowired
     private CopyBookRepository copyBookRepository;
 
-    public CopyBook saveCopyBook(CopyBook copyBook) {
+    public CopyBook copyBook(CopyBook copyBook) {
         return copyBookRepository.save(copyBook);
     }
 
@@ -28,24 +30,30 @@ public class CopyBookService {
         return copyBookRepository.findById(id).orElse(null);
     }
 
-    public List<CopyBook> findAllCopyBooks() {
-        return copyBookRepository.findAll();
-    }
-
-    public Long getCountCopyBooksByTitle(String title) {
-        return copyBookRepository.countCopyBooksByTitleBookTitle(title);
+    public Long getCountCopyBooksAvailableByTitle(String title) {
+        return copyBookRepository.countCopyBooksByStatusAndTitleBook_Title(
+                RentalStatus.AVAILABLE.getStatus(), title);
     }
 
     public void setCopyBookStatusAsAvailable(Long copyBookId) {
             CopyBook copyBook = findCopyBookById(copyBookId);
+        if (!checkCopyBookStatus(copyBook)) {
             copyBook.setStatus(RentalStatus.AVAILABLE.getStatus());
             copyBookRepository.save(copyBook);
-
+        }
+        LOGGER.warning("This book have a status: AVAILABLE ");
     }
 
     public void setCopyBookStatusAsRented(Long copyBookId) {
             CopyBook copyBook = findCopyBookById(copyBookId);
+        if (checkCopyBookStatus(copyBook)) {
             copyBook.setStatus(RentalStatus.RENTED.getStatus());
             copyBookRepository.save(copyBook);
+        }
+        LOGGER.warning("This book have a status: RENTED ");
+    }
+
+    private boolean checkCopyBookStatus(CopyBook copyBook) {
+        return copyBook.getStatus() == RentalStatus.AVAILABLE.getStatus();
     }
 }

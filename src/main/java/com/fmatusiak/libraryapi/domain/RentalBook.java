@@ -26,11 +26,11 @@ public class RentalBook {
     @Column(name = "date_return_book")
     private LocalDate dateReturnBook;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_copy_book", referencedColumnName = "id")
     private CopyBook copyBook;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_reader", referencedColumnName = "id")
     private Reader reader;
 

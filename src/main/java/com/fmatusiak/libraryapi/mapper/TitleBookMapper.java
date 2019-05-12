@@ -34,7 +34,6 @@ public class TitleBookMapper {
                 titleBook.getYearPublishment(),
                 getListCopyBookId(titleBook.getCopyBooks()));
     }
-/*
     public List<TitleBookDto> titleBookListToTitleBookDtoListMapper(final List<TitleBook> titleBookList) {
         return titleBookList.stream()
                 .map(titleBook -> titleBookToTitleBookDtoMapper(titleBook))
@@ -45,7 +44,7 @@ public class TitleBookMapper {
         return titleBookDtos.stream()
                 .map(titleBookDto -> titleBookDtoToTitleBookMapper(titleBookDto))
                 .collect(Collectors.toList());
-    }*/
+    }
 
     private Long getIdWithCopyBook(final CopyBook copyBook) {
         if (copyBook.getId() == null) {
@@ -53,13 +52,6 @@ public class TitleBookMapper {
         }
         return copyBook.getId();
     }
-/*
-    private CopyBook getCopyBookWithId(final Long copyBookId) {
-        if (copyBookId == null) {
-            return null;
-        }
-        return copyBookService.findCopyBookById(copyBookId);
-    }*/
 
     private List<Long> getListCopyBookId(final List<CopyBook> copyBooks) {
         try {

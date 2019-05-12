@@ -1,9 +1,11 @@
 package com.fmatusiak.libraryapi.domain;
 
+import com.fmatusiak.libraryapi.domain.enums.RentalStatus;
 import com.fmatusiak.libraryapi.service.CopyBookService;
 import com.fmatusiak.libraryapi.service.ReaderService;
 import com.fmatusiak.libraryapi.service.RentalBookService;
 import com.fmatusiak.libraryapi.service.TitleBookService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,39 +35,13 @@ public class RentalBookTestSuite {
     private ReaderService readerService;
 
     @Test
-    public void testSaveRentalBook() {
-        //Given
-        TitleBook titleBook = new TitleBook("Wiedzmin", "edward", 2004);
-        titleBookService.saveTitleBook(titleBook);
-
-        CopyBook copyBook = new CopyBook("true", titleBook);
-        copyBookService.saveCopyBook(copyBook);
-
-        Reader reader = new Reader("edward", "acki");
-        readerService.saveReader(reader);
-
-        RentalBook rentalBook = new RentalBook(
-                LocalDate.now().plusDays(5),
-                copyBookService.findCopyBookById(copyBook.getId()),
-                readerService.findReaderById(reader.getId()));
-
-        rentalBookService.saveRentalBook(rentalBook);
-
-        //When
-        int countRentalBooks = rentalBookService.findAllRentalBooks().size();
-
-        //Then
-        assertEquals(1, countRentalBooks);
-    }
-
-    @Test
     public void testDeleteRentalBook() {
         //Given
         TitleBook titleBook = new TitleBook("Wiedzmin", "edward", 2004);
         titleBookService.saveTitleBook(titleBook);
 
         CopyBook copyBook = new CopyBook("true", titleBook);
-        copyBookService.saveCopyBook(copyBook);
+        copyBookService.copyBook(copyBook);
 
         Reader reader = new Reader("edward", "acki");
         readerService.saveReader(reader);
@@ -76,24 +51,24 @@ public class RentalBookTestSuite {
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
 
-        rentalBookService.saveRentalBook(rentalBook);
+        rentalBookService.rentalBook(rentalBook);
 
-        rentalBookService.deleteRentalBook(rentalBook);
+        rentalBookService.returnRentalBook(rentalBook);
         //When
-        int countRentalBooks = rentalBookService.findAllRentalBooks().size();
+        RentalBook readRentalBook = rentalBookService.findRentalBookById(rentalBook.getId());
 
         //Then
-        assertEquals(0, countRentalBooks);
+        assertEquals(null, readRentalBook);
     }
 
     @Test
-    public void testFindByIdRentalBook() {
+    public void testSaveAndFindRentalBook() {
         //Given
         TitleBook titleBook = new TitleBook("Wiedzmin", "edward", 2004);
         titleBookService.saveTitleBook(titleBook);
 
         CopyBook copyBook = new CopyBook("true", titleBook);
-        copyBookService.saveCopyBook(copyBook);
+        copyBookService.copyBook(copyBook);
 
         Reader reader = new Reader("edward", "acki");
         readerService.saveReader(reader);
@@ -103,7 +78,7 @@ public class RentalBookTestSuite {
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
 
-        rentalBookService.saveRentalBook(rentalBook);
+        rentalBookService.rentalBook(rentalBook);
 
         //When
         RentalBook rentalBookRead = rentalBookService.findRentalBookById(rentalBook.getId());
@@ -113,44 +88,36 @@ public class RentalBookTestSuite {
     }
 
     @Test
-    public void testFindAllRentalBooks() {
+    public void returnRentalBook() {
         //Given
         TitleBook titleBook = new TitleBook("Wiedzmin", "edward", 2004);
         titleBookService.saveTitleBook(titleBook);
 
-        CopyBook copyBook = new CopyBook("true", titleBook);
-        copyBookService.saveCopyBook(copyBook);
+        CopyBook copyBook = new CopyBook(RentalStatus.AVAILABLE.getStatus(), titleBook);
+        copyBookService.copyBook(copyBook);
 
         Reader reader = new Reader("edward", "acki");
         readerService.saveReader(reader);
-
-        TitleBook titleBook2 = new TitleBook("patyczek", "dawid", 1995);
-        titleBookService.saveTitleBook(titleBook2);
-
-        CopyBook copyBook2 = new CopyBook("false", titleBook2);
-        copyBookService.saveCopyBook(copyBook2);
-
-        Reader reader2 = new Reader("edward", "acki");
-        readerService.saveReader(reader2);
 
         RentalBook rentalBook = new RentalBook(
                 LocalDate.now().plusDays(5),
                 copyBookService.findCopyBookById(copyBook.getId()),
                 readerService.findReaderById(reader.getId()));
 
-        RentalBook rentalBook2 = new RentalBook(
-                LocalDate.now().plusDays(5),
-                copyBookService.findCopyBookById(copyBook2.getId()),
-                readerService.findReaderById(reader2.getId()));
+        rentalBookService.rentalBook(rentalBook);
 
-        rentalBookService.saveRentalBook(rentalBook);
-        rentalBookService.saveRentalBook(rentalBook2);
+        String readStatusCopyBookBeforeReturn =
+                copyBookService.findCopyBookById(copyBook.getId()).getStatus();
 
-        //When
-        List<RentalBook> rentalBookList = rentalBookService.findAllRentalBooks();
+        rentalBookService.returnRentalBook(rentalBook);
 
-        //Then
-        assertEquals(2, rentalBookList.size());
+        String readStatuscopyBookAfterReturn =
+                copyBookService.findCopyBookById(copyBook.getId()).getStatus();
+
+        //then
+        Assert.assertEquals(RentalStatus.RENTED.getStatus(), readStatusCopyBookBeforeReturn);
+        Assert.assertEquals(RentalStatus.AVAILABLE.getStatus(), readStatuscopyBookAfterReturn);
     }
+
 
 }

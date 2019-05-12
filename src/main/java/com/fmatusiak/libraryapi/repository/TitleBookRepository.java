@@ -7,20 +7,18 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TitleBookRepository extends CrudRepository<TitleBook, Long> {
-    @Override
-    List<TitleBook> findAll();
 
     @Override
     Optional<TitleBook> findById(Long id);
 
     @Override
-    TitleBook save(TitleBook copyBook);
+    TitleBook save(TitleBook titleBook);
 
     @Override
-    void delete(TitleBook copyBook);
+    void delete(TitleBook titleBook);
 
-    TitleBook findByTitle(String title);
+    TitleBook findTitleBookByTitle(String title);
 
-    List<TitleBook> findAllByAuthor(String author);
+    List<TitleBook> findTitleBooksByAuthor(String author);
 
 }

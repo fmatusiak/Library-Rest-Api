@@ -7,6 +7,8 @@ import com.fmatusiak.libraryapi.service.TitleBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -19,8 +21,8 @@ public class TitleBookController {
     @Autowired
     private TitleBookMapper titleBookMapper;
 
-    @PostMapping(value = "createTitleBook", consumes = APPLICATION_JSON_VALUE)
-    public void createTitleBook(@RequestBody TitleBook titleBook) {
+    @PostMapping(value = "addTitleBook", consumes = APPLICATION_JSON_VALUE)
+    public void addTitleBook(@RequestBody TitleBook titleBook) {
         titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.saveTitleBook(titleBook));
     }
 
@@ -32,6 +34,16 @@ public class TitleBookController {
     @GetMapping(value = "findTitleBookById")
     public TitleBookDto findTitleBookById(@RequestParam Long titleBookId) {
         return titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.findTitleBookById(titleBookId));
+    }
+
+    @GetMapping(value = "findTitleBookByTitle")
+    public TitleBookDto findTitleBookByTitle(@RequestParam String title) {
+        return titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.findTitleBookByTitle(title));
+    }
+
+    @GetMapping(value = "findTitleBooksByAuthor")
+    public List<TitleBookDto> findTitleBooksByAuthor(@RequestParam String author) {
+        return titleBookMapper.titleBookListToTitleBookDtoListMapper(titleBookService.findTitleBooksByAuthor(author));
     }
 
 }

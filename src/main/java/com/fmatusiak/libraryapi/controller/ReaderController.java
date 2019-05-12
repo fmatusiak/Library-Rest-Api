@@ -19,8 +19,8 @@ public class ReaderController {
     @Autowired
     private ReaderMapper readerMapper;
 
-    @PostMapping(value = "createReader", consumes = APPLICATION_JSON_VALUE)
-    public void createReader(@RequestBody Reader reader) {
+    @PostMapping(value = "addReader", consumes = APPLICATION_JSON_VALUE)
+    public void addReader(@RequestBody Reader reader) {
         readerMapper.ReaderToReaderDtoMapper(readerService.saveReader(reader));
     }
 
@@ -32,6 +32,12 @@ public class ReaderController {
     @GetMapping(value = "findReaderById")
     public ReaderDto findReaderById(@RequestParam Long readerId) {
         return readerMapper.ReaderToReaderDtoMapper(readerService.findReaderById(readerId));
+    }
+
+    @GetMapping(value = "findReaderByFirstnameAndLastname")
+    public ReaderDto findReaderByFirstnameAndLastname(@RequestParam String firstname, @RequestParam String lastname) {
+        return readerMapper.ReaderToReaderDtoMapper(
+                readerService.findReaderByFirstnameAndLastname(firstname, lastname));
     }
 
 }
