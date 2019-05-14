@@ -1,6 +1,5 @@
 package com.fmatusiak.libraryapi.controller;
 
-import com.fmatusiak.libraryapi.domain.Reader;
 import com.fmatusiak.libraryapi.domain.dto.ReaderDto;
 import com.fmatusiak.libraryapi.mapper.ReaderMapper;
 import com.fmatusiak.libraryapi.service.ReaderService;
@@ -20,8 +19,8 @@ public class ReaderController {
     private ReaderMapper readerMapper;
 
     @PostMapping(value = "addReader", consumes = APPLICATION_JSON_VALUE)
-    public void addReader(@RequestBody Reader reader) {
-        readerMapper.ReaderToReaderDtoMapper(readerService.saveReader(reader));
+    public ReaderDto addReader(@RequestBody ReaderDto readerDto) {
+        return readerMapper.ReaderToReaderDtoMapper(readerService.saveReader(readerMapper.ReaderDtoToReaderMapper(readerDto)));
     }
 
     @DeleteMapping(value = "deleteReader")

@@ -7,17 +7,8 @@ import com.fmatusiak.libraryapi.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 public class RentalBookMapper {
-
-    @Autowired
-    private ReaderMapper readerMapper;
-
-    @Autowired
-    private CopyBookMapper copyBookMapper;
 
     @Autowired
     private CopyBookService copyBookService;
@@ -39,17 +30,5 @@ public class RentalBookMapper {
                 rentalBook.getDateReturnBook(),
                 rentalBook.getCopyBook().getId(),
                 rentalBook.getReader().getId());
-    }
-
-    public List<RentalBookDto> RentalBookListToRentalBookDtoMapper(final List<RentalBook> rentalBooks) {
-        return rentalBooks.stream()
-                .map(rentalBook -> RentalBookToRentalBookDtoMapper(rentalBook))
-                .collect(Collectors.toList());
-    }
-
-    public List<RentalBook> RentalBookDtoListToRentalBookMapper(final List<RentalBookDto> rentalBooksDto) {
-        return rentalBooksDto.stream()
-                .map(rentalBookDto -> RentalBookDtoToRentalBookMapper(rentalBookDto))
-                .collect(Collectors.toList());
     }
 }

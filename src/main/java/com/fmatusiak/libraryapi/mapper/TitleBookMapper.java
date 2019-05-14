@@ -40,12 +40,6 @@ public class TitleBookMapper {
                 .collect(Collectors.toList());
     }
 
-    public List<TitleBook> titleBookDtoListToTitleBookListMapper(final List<TitleBookDto> titleBookDtos) {
-        return titleBookDtos.stream()
-                .map(titleBookDto -> titleBookDtoToTitleBookMapper(titleBookDto))
-                .collect(Collectors.toList());
-    }
-
     private Long getIdWithCopyBook(final CopyBook copyBook) {
         if (copyBook.getId() == null) {
             return null;

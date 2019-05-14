@@ -1,6 +1,5 @@
 package com.fmatusiak.libraryapi.domain;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +10,9 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @Entity
-@Table(name = "TITLES_BOOKS", uniqueConstraints = {@UniqueConstraint(columnNames = "title")})
+@Table(name = "TITLES_BOOKS")
 public class TitleBook {
 
     @Id

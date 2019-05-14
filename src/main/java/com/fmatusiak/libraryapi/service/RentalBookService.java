@@ -24,11 +24,11 @@ public class RentalBookService {
     public RentalBook rentalBook(RentalBook rentalBook) {
         if (checkStatusRentalBook(rentalBook)) {
             LOGGER.warning("This book is rented");
-        } else {
-            copyBookService.setCopyBookStatusAsRented(rentalBook.getCopyBook().getId());
+            return null;
         }
-
+            copyBookService.setCopyBookStatusAsRented(rentalBook.getCopyBook().getId());
         return rentalBookRepository.save(rentalBook);
+
     }
 
     public void returnRentalBook(RentalBook rentalBook) {

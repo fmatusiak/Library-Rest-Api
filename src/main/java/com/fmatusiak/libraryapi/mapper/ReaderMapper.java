@@ -32,18 +32,6 @@ public class ReaderMapper {
                 getListRentalBooksWithId(reader.getRentalBooks()));
     }
 
-    public List<ReaderDto> ReaderListToReaderDtoListMapper(final List<Reader> readerList) {
-        return readerList.stream()
-                .map(reader -> ReaderToReaderDtoMapper(reader))
-                .collect(Collectors.toList());
-    }
-
-    public List<Reader> ReaderListDtoToReaderListMapper(final List<ReaderDto> readerDtos) {
-        return readerDtos.stream()
-                .map(readerDto -> ReaderDtoToReaderMapper(readerDto))
-                .collect(Collectors.toList());
-    }
-
     private List<Long> getListRentalBooksWithId(final List<RentalBook> rentalBooks) {
         return rentalBooks.stream()
                 .map(rentalBookDto -> rentalBookDto.getId())

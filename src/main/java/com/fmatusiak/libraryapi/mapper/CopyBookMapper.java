@@ -21,30 +21,18 @@ public class CopyBookMapper {
     @Autowired
     private TitleBookService titleBookService;
 
-    public CopyBook CopyBookDtoToCopyBookMapper(CopyBookDto copyBookDto) {
+    public CopyBook CopyBookDtoToCopyBookMapper(final CopyBookDto copyBookDto) {
         return new CopyBook(copyBookDto.getId(),
                 copyBookDto.getStatus(),
                 getTitleBookWithId(copyBookDto.getTitleBookId()),
                 getListRentalBookWithId(copyBookDto.getRentalBooksId()));
     }
 
-    public CopyBookDto CopyBookToCopyBookDtoMapper(CopyBook copyBook) {
+    public CopyBookDto CopyBookToCopyBookDtoMapper(final CopyBook copyBook) {
         return new CopyBookDto(copyBook.getId(),
                 copyBook.getStatus(),
                 Long.valueOf(copyBook.getTitleBook().getId()),
                 getListRentalBookId(copyBook.getRentalBooks()));
-    }
-
-    public List<CopyBook> CopyBookDtoListToCopyBookListMapper(List<CopyBookDto> copyBookDtos) {
-        return copyBookDtos.stream()
-                .map(copyBookDto -> CopyBookDtoToCopyBookMapper(copyBookDto))
-                .collect(Collectors.toList());
-    }
-
-    public List<CopyBookDto> CopyBookListToCopyBookDtoListMapper(List<CopyBook> copyBooks) {
-        return copyBooks.stream()
-                .map(copyBook -> CopyBookToCopyBookDtoMapper(copyBook))
-                .collect(Collectors.toList());
     }
 
     private RentalBook getRentalBookWithId(Long rentalBookId) {

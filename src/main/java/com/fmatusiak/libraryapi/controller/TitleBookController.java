@@ -1,6 +1,5 @@
 package com.fmatusiak.libraryapi.controller;
 
-import com.fmatusiak.libraryapi.domain.TitleBook;
 import com.fmatusiak.libraryapi.domain.dto.TitleBookDto;
 import com.fmatusiak.libraryapi.mapper.TitleBookMapper;
 import com.fmatusiak.libraryapi.service.TitleBookService;
@@ -22,8 +21,8 @@ public class TitleBookController {
     private TitleBookMapper titleBookMapper;
 
     @PostMapping(value = "addTitleBook", consumes = APPLICATION_JSON_VALUE)
-    public void addTitleBook(@RequestBody TitleBook titleBook) {
-        titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.saveTitleBook(titleBook));
+    public TitleBookDto addTitleBook(@RequestBody TitleBookDto titleBookDto) {
+        return titleBookMapper.titleBookToTitleBookDtoMapper(titleBookService.saveTitleBook(titleBookMapper.titleBookDtoToTitleBookMapper(titleBookDto)));
     }
 
     @DeleteMapping(value = "deleteTitleBook")

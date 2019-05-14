@@ -37,7 +37,7 @@ public class CopyBookService {
 
     public void setCopyBookStatusAsAvailable(Long copyBookId) {
             CopyBook copyBook = findCopyBookById(copyBookId);
-        if (!checkCopyBookStatus(copyBook)) {
+        if (copyBook != null && !checkCopyBookStatus(copyBook)) {
             copyBook.setStatus(RentalStatus.AVAILABLE.getStatus());
             copyBookRepository.save(copyBook);
         }
@@ -46,7 +46,8 @@ public class CopyBookService {
 
     public void setCopyBookStatusAsRented(Long copyBookId) {
             CopyBook copyBook = findCopyBookById(copyBookId);
-        if (checkCopyBookStatus(copyBook)) {
+        System.out.println(copyBook.getId());
+        if (copyBook != null && checkCopyBookStatus(copyBook)) {
             copyBook.setStatus(RentalStatus.RENTED.getStatus());
             copyBookRepository.save(copyBook);
         }
@@ -54,6 +55,6 @@ public class CopyBookService {
     }
 
     private boolean checkCopyBookStatus(CopyBook copyBook) {
-        return copyBook.getStatus() == RentalStatus.AVAILABLE.getStatus();
+        return copyBook.getStatus().equals(RentalStatus.AVAILABLE.getStatus());
     }
 }
