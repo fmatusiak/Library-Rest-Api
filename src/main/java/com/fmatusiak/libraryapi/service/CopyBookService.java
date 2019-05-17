@@ -46,7 +46,6 @@ public class CopyBookService {
 
     public void setCopyBookStatusAsRented(Long copyBookId) {
             CopyBook copyBook = findCopyBookById(copyBookId);
-        System.out.println(copyBook.getId());
         if (copyBook != null && checkCopyBookStatus(copyBook)) {
             copyBook.setStatus(RentalStatus.RENTED.getStatus());
             copyBookRepository.save(copyBook);

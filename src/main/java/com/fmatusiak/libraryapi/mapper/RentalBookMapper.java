@@ -17,7 +17,8 @@ public class RentalBookMapper {
     private ReaderService readerService;
 
     public RentalBook RentalBookDtoToRentalBookMapper(final RentalBookDto rentalBookDto) {
-        return new RentalBook(rentalBookDto.getId(),
+        return new RentalBook(
+                rentalBookDto.getId(),
                 rentalBookDto.getDateRentalBook(),
                 rentalBookDto.getDateReturnBook(),
                 copyBookService.findCopyBookById(rentalBookDto.getCopyBookId()),
@@ -25,7 +26,8 @@ public class RentalBookMapper {
     }
 
     public RentalBookDto RentalBookToRentalBookDtoMapper(final RentalBook rentalBook) {
-        return new RentalBookDto(rentalBook.getId(),
+        return new RentalBookDto(
+                rentalBook.getId(),
                 rentalBook.getDateRentalBook(),
                 rentalBook.getDateReturnBook(),
                 rentalBook.getCopyBook().getId(),

@@ -26,7 +26,7 @@ public class RentalBookService {
             LOGGER.warning("This book is rented");
             return null;
         }
-            copyBookService.setCopyBookStatusAsRented(rentalBook.getCopyBook().getId());
+        copyBookService.setCopyBookStatusAsRented(rentalBook.getCopyBook().getId());
         return rentalBookRepository.save(rentalBook);
 
     }

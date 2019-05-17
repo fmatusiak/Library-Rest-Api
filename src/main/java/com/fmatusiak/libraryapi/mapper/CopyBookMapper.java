@@ -36,19 +36,16 @@ public class CopyBookMapper {
     }
 
     private RentalBook getRentalBookWithId(Long rentalBookId) {
-        if (rentalBookId == null || rentalBookId == 0)
+        if (rentalBookId == null || rentalBookId == 0) {
             return null;
+        }
         return rentalBookService.findRentalBookById(rentalBookId);
     }
-
     private TitleBook getTitleBookWithId(Long titleBookId) {
-        if (titleBookId == null || titleBookId == 0)
+        if (titleBookId == null || titleBookId == 0) {
             return null;
+        }
         return titleBookService.findTitleBookById(titleBookId);
-    }
-
-    private Long getIdWithTitleBook(TitleBook titleBook) {
-        return Long.valueOf(titleBook.getId());
     }
 
     private List<RentalBook> getListRentalBookWithId(List<Long> itemsId) {
@@ -60,13 +57,12 @@ public class CopyBookMapper {
     }
 
     private List<Long> getListRentalBookId(List<RentalBook> rentalBooks) {
-        try {
-            return rentalBooks.stream()
-                    .map(rentalBook -> rentalBook.getId())
-                    .collect(Collectors.toList());
-        } catch (Exception e) {
+        if (rentalBooks.isEmpty()) {
             return null;
         }
+        return rentalBooks.stream()
+                .map(rentalBook -> rentalBook.getId())
+                .collect(Collectors.toList());
     }
 
 }
