@@ -28,7 +28,6 @@ public class RentalBookService {
         }
         copyBookService.setCopyBookStatusAsRented(rentalBook.getCopyBook().getId());
         return rentalBookRepository.save(rentalBook);
-
     }
 
     public void returnRentalBook(RentalBook rentalBook) {
